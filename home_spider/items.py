@@ -13,10 +13,10 @@ class HomeSpiderItem(scrapy.Item):
 
 
 class LouPanItem(scrapy.Item):
-    name = scrapy.item()
-    location = scrapy.item()
-    total_price = scrapy.item()
-    room_number = scrapy.item()
-    room_area = scrapy.item()
-    is_sail = scrapy.item()
-    room_type = scrapy.item()
+    name = scrapy.Field()
+    location = scrapy.Field()
+    total_price = scrapy.Field()
+    room_number = scrapy.Field()
+    room_area = scrapy.Field()
+    is_sail = scrapy.Field()
+    room_type = scrapy.Field()

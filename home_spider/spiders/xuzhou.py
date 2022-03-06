@@ -1,6 +1,9 @@
 import scrapy
 from lxml import etree
 from home_spider.items import LouPanItem
+import logging
+
+logger = logging.getLogger(__name__)
 class XuzhouSpider(scrapy.Spider):
     name = 'xuzhou'
     allowed_domains = ['xz.fang.ke.com/loupan']
@@ -13,6 +16,8 @@ class XuzhouSpider(scrapy.Spider):
     def parse(self, response):
         is_request_next_flag = response.meta['is_request_next']
         html = etree.HTML(response.text)
+        with open('res.html','w', encoding='utf-8') as f:
+            f.write(response.text)
         loupans = html.xpath('//div[@class="resblock-desc-wrapper"]')
         # next_url = xz.fang.ke.com/loupan/pg2/
         for loupan in loupans:
