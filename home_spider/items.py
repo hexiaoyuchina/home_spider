@@ -17,6 +17,7 @@ class LouPanItem(scrapy.Item):
     location = scrapy.Field()
     total_price = scrapy.Field()
     room_number = scrapy.Field()
+    price = scrapy.Field()
     room_area = scrapy.Field()
     is_sail = scrapy.Field()
     room_type = scrapy.Field()

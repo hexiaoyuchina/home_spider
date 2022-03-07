@@ -62,8 +62,6 @@ class HomeSpiderDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
     # passed objects.
-    def __init__(self):
-        self.ua = UserAgent()
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -82,8 +80,7 @@ class HomeSpiderDownloaderMiddleware:
         # - or return a Request object
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
-        request.headers['User-Agent'] = self.ua.random
-        return request
+        return None
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
