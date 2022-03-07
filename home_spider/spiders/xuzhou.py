@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import scrapy
 from lxml import etree
@@ -13,10 +14,7 @@ class XuzhouSpider(scrapy.Spider):
 
     def parse(self, response):
         html = etree.HTML(response.text)
-        # with open('D:\\ALearn\\spider\\home_spider\\res\\{}.html'.format(uuid.uuid1()), 'rw', encoding='utf-8') as f:
-        #     f.write(response.text)
         loupans = html.xpath('//div[@class="resblock-desc-wrapper"]')
-        # next_url = xz.fang.ke.com/loupan/pg2/
         for loupan in loupans:
 
             item = LouPanItem()
@@ -29,13 +27,13 @@ class XuzhouSpider(scrapy.Spider):
             if price_list:
                 price = price_list[0]
             else:
-                price=0
-            logger.info('aaaaaaaaaaaaaaaaaaaaa:' + loupan_name)
+                price = '0'
+
             total_price_list = loupan.xpath('./div[@class="resblock-price"]//div[@class="second"]//text()')
             if total_price_list:
                 total_price = total_price_list[0]
             else:
-                total_price = 0
+                total_price = '0'
 
             rom_num_area = loupan.xpath('./a[@class="resblock-room"]//span//text()')
             if not rom_num_area:
