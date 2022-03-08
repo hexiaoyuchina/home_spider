@@ -48,7 +48,7 @@ class XuzhouSpider(scrapy.Spider):
             item['price'] = price.replace(')', ']').replace('(', '[')
             item['total_price'] = total_price.replace(')', ']').replace('(', '[')
             item['room_number'] = rom_num.replace(')', ']').replace('(', '[')
-            item['room_area'] = rom_area.replace(')', ']').replace('(', '[')
+            item['room_area'] = rom_area.replace(')', ']').replace('(', '[').replace('㎡', '')
             item['is_sail'] = loupan_is_sail.replace(')', ']').replace('(', '[')
             item['room_type'] = loupan_type.replace(')', ']').replace('(', '[')
 
