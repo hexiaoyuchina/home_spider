@@ -27,7 +27,7 @@ class HomeSpiderPipeline:
 
     def close_spider(self, spider):
         # 关闭爬虫前，插入剩余数据
-        sql = "insert into home_data(id,name,location,total_price,room_number,room_area,,is_sail,room_type) values " + ",".join(
+        sql = "insert into home_data(id,name,location,total_price,room_number,room_area,is_sail,room_type) values " + ",".join(
             self.item_list)
         self.client.execute(sql)
 
