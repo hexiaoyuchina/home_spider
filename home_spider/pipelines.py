@@ -29,6 +29,7 @@ class HomeSpiderPipeline:
         # 关闭爬虫前，插入剩余数据
         sql = "insert into home_data(id,name,location,total_price,room_number,room_area,is_sail,room_type) values " + ",".join(
             self.item_list)
+        logger.info(sql)
         self.client.execute(sql)
 
         self.client.close()
@@ -47,8 +48,7 @@ class HomeSpiderPipeline:
         self.item_list.append(
             "('" + "','".join(page_data) + "\')"
         )
-        logger.info(self.item_list)
         if len(self.item_list) == 1000:
-            sql = "insert into home_data(id,name,location,price,total_price,room_numberroom_area,,is_sail,room_type) values "+",".join(self.item_list)
+            sql = "insert into home_data(id,name,location,price,total_price,room_number,room_area,is_sail,room_type) values "+",".join(self.item_list)
             self.client.execute(sql)
         return item
