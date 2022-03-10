@@ -27,10 +27,9 @@ class HomeSpiderPipeline:
 
     def close_spider(self, spider):
         # 关闭爬虫前，插入剩余数据
-        sql = "insert into home_data(id,name,location,total_price,room_number,room_area,is_sail,room_type) values " + ",".join(
-            self.item_list)
-        logger.info(sql)
-        self.client.execute(sql)
+        sql = "insert into home_data(id,name,location,price,total_price,room_number,room_area,is_sail,room_type) values "
+        logger.info(sql, )
+        self.client.execute(sql, self.item_list)
 
         self.client.close()
 
@@ -45,10 +44,8 @@ class HomeSpiderPipeline:
                      item['room_area'],
                      item['is_sail'],
                      item['room_type']]
-        self.item_list.append(
-            "('" + "','".join(page_data) + "\')"
-        )
+        self.item_list.append(page_data)
         if len(self.item_list) == 1000:
-            sql = "insert into home_data(id,name,location,price,total_price,room_number,room_area,is_sail,room_type) values "+",".join(self.item_list)
-            self.client.execute(sql)
+            sql = "insert into home_data(id,name,location,price,total_price,room_number,room_area,is_sail,room_type) values "
+            self.client.execute(sql, self.item_list)
         return item

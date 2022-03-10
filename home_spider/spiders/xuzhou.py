@@ -44,14 +44,14 @@ class XuzhouSpider(scrapy.Spider):
                 rom_num = rom_num_area[0] + ('/').join(rom_num_area[1:-1])
                 rom_area = rom_num_area[-1]
 
-            item['name'] = loupan_name.replace(')', ']').replace('(', '[')
-            item['location'] = loupan_location.replace('\n\t\t', '').replace(')', ']').replace('(', '[')
-            item['price'] = price.replace(')', ']').replace('(', '[')
-            item['total_price'] = total_price.replace(')', ']').replace('(', '[')
-            item['room_number'] = rom_num.replace(')', ']').replace('(', '[')
-            item['room_area'] = rom_area.replace(')', ']').replace('(', '[').replace('㎡', '')
-            item['is_sail'] = loupan_is_sail.replace(')', ']').replace('(', '[')
-            item['room_type'] = loupan_type.replace(')', ']').replace('(', '[')
+            item['name'] = loupan_name
+            item['location'] = loupan_location.replace('\n\t\t', '')
+            item['price'] = price
+            item['total_price'] = total_price
+            item['room_number'] = rom_num
+            item['room_area'] = rom_area
+            item['is_sail'] = loupan_is_sail
+            item['room_type'] = loupan_type
 
             yield item
 
